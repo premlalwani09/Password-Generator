@@ -38,12 +38,6 @@ Make sure you have Node.js and npm installed on your machine. You can download N
 This will start the development server, and you can view the app by navigating to http://localhost:5173 in your web browser.
 
 
-## Hosting
-
-The application is hosted at https://your-hosted-app-link.com. Visit the link to see the live version of the Password Generator.
-
-
-
 
 ## Component Details
 
