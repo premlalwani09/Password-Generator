@@ -35,10 +35,6 @@ const PasswordGenerator = () => {
 
   };
 
-  useEffect(() => {
-    generatePassword();
-  }, [length, includeUppercase, includeLowercase, includeNumbers, includeSymbols]);
-
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(password)
@@ -56,7 +52,7 @@ const PasswordGenerator = () => {
         Length:
         <input
           type="number"
-          value={length}
+          placeholder={length}
           onChange={(e) => setLength(Number(e.target.value))}
           min="8"
           max="50"
