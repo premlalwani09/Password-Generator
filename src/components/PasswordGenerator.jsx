@@ -53,7 +53,10 @@ const PasswordGenerator = () => {
         <input
           type="number"
           placeholder={length}
-          onChange={(e) => setLength(Number(e.target.value))}
+          onChange={(e) => 
+            setLength(Number(e.target.value),
+            setPassword('')
+        )}
           min="8"
           max="50"
         />
@@ -62,7 +65,10 @@ const PasswordGenerator = () => {
         <input
           type="checkbox"
           checked={includeUppercase}
-          onChange={(e) => setIncludeUppercase(e.target.checked)}
+          onChange={(e) => 
+            setIncludeUppercase((e.target.checked),
+            setPassword('')
+        )}
         />
         Include Uppercase
       </label>
@@ -70,7 +76,9 @@ const PasswordGenerator = () => {
         <input
           type="checkbox"
           checked={includeLowercase}
-          onChange={(e) => setIncludeLowercase(e.target.checked)}
+          onChange={(e) => setIncludeLowercase((e.target.checked),
+            setPassword('')
+        )}
         />
         Include Lowercase
       </label>
@@ -78,7 +86,9 @@ const PasswordGenerator = () => {
         <input
           type="checkbox"
           checked={includeNumbers}
-          onChange={(e) => setIncludeNumbers(e.target.checked)}
+          onChange={(e) => setIncludeNumbers((e.target.checked),
+            setPassword('')
+        )}
         />
         Include Numbers
       </label>
@@ -86,7 +96,9 @@ const PasswordGenerator = () => {
         <input
           type="checkbox"
           checked={includeSymbols}
-          onChange={(e) => setIncludeSymbols(e.target.checked)}
+          onChange={(e) => setIncludeSymbols((e.target.checked),
+            setPassword('')
+        )}
         />
         Include Symbols
       </label>
