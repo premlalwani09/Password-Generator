@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import './PasswordGenerator.css'
+import React, { useState } from 'react';
+import './PasswordGenerator.css';
 
 const PasswordGenerator = () => {
   const [length, setLength] = useState(8);
@@ -9,8 +9,15 @@ const PasswordGenerator = () => {
   const [includeSymbols, setIncludeSymbols] = useState(true);
   const [password, setPassword] = useState('');
   const [copied, setCopied] = useState(false);
+  const [error, setError] = useState('');
 
   const generatePassword = () => {
+    if (length < 8 || length > 50) {
+      setError('Password length must be between 8 and 50 characters.');
+      return;
+    }
+
+    setError('');
 
     const lowercase = 'abcdefghijklmnopqrstuvwxyz';
     const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -24,7 +31,6 @@ const PasswordGenerator = () => {
     if (includeNumbers) characters += numbers;
     if (includeSymbols) characters += symbols;
 
-
     let generatedPassword = '';
 
     for (let i = 0; i < length; i++) {
@@ -33,18 +39,14 @@ const PasswordGenerator = () => {
     }
 
     setPassword(generatedPassword);
-
   };
 
-
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(password)
-    .then(() => {
+    navigator.clipboard.writeText(password).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
   };
-
 
   return (
     <div className="password-generator">
@@ -54,22 +56,23 @@ const PasswordGenerator = () => {
         <input
           type="number"
           placeholder={length}
-          onChange={(e) => 
-            setLength(Number(e.target.value),
-            setPassword('')
-        )}
+          onChange={(e) => {
+            setLength(Number(e.target.value));
+            setPassword('');
+          }}
           min="8"
           max="50"
         />
       </label>
+      {error && <p className="error">{error}</p>}
       <label>
         <input
           type="checkbox"
           checked={includeUppercase}
-          onChange={(e) => 
-            setIncludeUppercase((e.target.checked),
-            setPassword('')
-        )}
+          onChange={(e) => {
+            setIncludeUppercase(e.target.checked);
+            setPassword('');
+          }}
         />
         Include Uppercase
       </label>
@@ -77,9 +80,10 @@ const PasswordGenerator = () => {
         <input
           type="checkbox"
           checked={includeLowercase}
-          onChange={(e) => setIncludeLowercase((e.target.checked),
-            setPassword('')
-        )}
+          onChange={(e) => {
+            setIncludeLowercase(e.target.checked);
+            setPassword('');
+          }}
         />
         Include Lowercase
       </label>
@@ -87,9 +91,10 @@ const PasswordGenerator = () => {
         <input
           type="checkbox"
           checked={includeNumbers}
-          onChange={(e) => setIncludeNumbers((e.target.checked),
-            setPassword('')
-        )}
+          onChange={(e) => {
+            setIncludeNumbers(e.target.checked);
+            setPassword('');
+          }}
         />
         Include Numbers
       </label>
@@ -97,9 +102,10 @@ const PasswordGenerator = () => {
         <input
           type="checkbox"
           checked={includeSymbols}
-          onChange={(e) => setIncludeSymbols((e.target.checked),
-            setPassword('')
-        )}
+          onChange={(e) => {
+            setIncludeSymbols(e.target.checked);
+            setPassword('');
+          }}
         />
         Include Symbols
       </label>
