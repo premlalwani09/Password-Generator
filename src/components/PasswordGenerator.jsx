@@ -117,7 +117,7 @@ const PasswordGenerator = () => {
           value={password}
         />
         <button onClick={copyToClipboard}>
-          {copied ? 'Copied!' : 'Copy'}
+          {copied ? 'Copied!' : 'Copy'}--+
         </button>
       </div>
     </div>
